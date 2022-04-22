@@ -1,3 +1,6 @@
-import Login from './Auth/Login';
+import Authentication from './Auth/Authentication';
+import Registration from './Auth/Registration';
+import ResetPassword from './Auth/ResetPassword';
+import ChangePassword from './Auth/ChangePassword';
 
-export { Login };
+export { Authentication, Registration, ResetPassword, ChangePassword };
