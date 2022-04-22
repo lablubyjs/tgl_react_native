@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+	Alert,
 	Keyboard,
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
@@ -18,13 +19,14 @@ import {
 	IconButton,
 	ControlledInput,
 	LinkComponent,
+	Loading,
 } from '@components';
+
+import { useAppDispatch } from '@hooks';
 
 import { authServices } from '@services';
 
 import { addUser } from '@store/user-slice';
-
-import { useAppDispatch, useAppSelector } from '@hooks';
 
 import { FormValues } from '@types';
 
@@ -39,13 +41,11 @@ const schema = yup.object({
 });
 
 const Authentication = ({ navigation }): JSX.Element => {
-	const { user } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
 
-	const [seePasswordItens, setSeePasswordItens] = useState({
-		prop: true,
-		icon: 'eye',
-	});
+	const [loading, setLoading] = useState(false);
+
+	const [seePasswordItens, setSeePasswordItens] = useState({ prop: true, icon: 'eye' });
 
 	const seePasswordHandler = () => {
 		setSeePasswordItens((prevSeePasswordItems) => ({
@@ -66,24 +66,30 @@ const Authentication = ({ navigation }): JSX.Element => {
 
 	const onAuthenticationHandler = async (data: FormValues) => {
 		try {
+			setLoading(true);
+
 			const response = await login({
 				email: data.email!,
 				password: data.password!,
 			});
 
+			setLoading(false);
 			await dispatch(addUser(response));
 
-			console.log(response);
-		} catch (error) {
-			if (error) {
-				console.log(error);
-			}
+		} catch (error: any) {
+			setLoading(false);
+
+			Alert.alert('Log in failed', error.message, [{ text: 'OK' }]);
 		}
 	};
 
 	const goToSingUpScreen = () => {
 		navigation.navigate('Registration');
 	};
+
+	if (loading) {
+		return <Loading />;
+	}
 
 	return (
 		<Container>

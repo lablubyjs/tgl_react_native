@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+	Alert,
 	Keyboard,
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
@@ -17,6 +18,7 @@ import {
 	Button,
 	IconButton,
 	ControlledInput,
+	Loading,
 } from '@components';
 
 import { authServices } from '@services';
@@ -30,11 +32,15 @@ const schema = yup.object({
 	passwordConfirm: yup
 		.string()
 		.oneOf([yup.ref('password'), null], 'Passwords must be the same')
-		.required('Please enter the confirm password'),
+		.required('Please enter the password confirm'),
 });
 
-const ChangePassword = ({ navigation }): JSX.Element => {
-	const [seePasswordItens, setSeePasswordItens] = useState({
+const ChangePassword = ({ navigation, route }): JSX.Element => {
+	const [loading, setLoading] = useState(false);
+
+	const [seePasswordItens, setSeePasswordItens] = useState({ prop: true, icon: 'eye' });
+
+	const [seePasswordConfirmItens, setSeePasswordConfirmItens] = useState({
 		prop: true,
 		icon: 'eye',
 	});
@@ -43,6 +49,13 @@ const ChangePassword = ({ navigation }): JSX.Element => {
 		setSeePasswordItens((prevSeePasswordItems) => ({
 			prop: !prevSeePasswordItems.prop,
 			icon: prevSeePasswordItems.icon === 'eye' ? 'eye-off' : 'eye',
+		}));
+	};
+
+	const seePasswordConfirmHandler = () => {
+		setSeePasswordConfirmItens((prevSeePasswordConfirmItems) => ({
+			prop: !prevSeePasswordConfirmItems.prop,
+			icon: prevSeePasswordConfirmItems.icon === 'eye' ? 'eye-off' : 'eye',
 		}));
 	};
 
@@ -56,23 +69,37 @@ const ChangePassword = ({ navigation }): JSX.Element => {
 
 	const { changePassword } = authServices();
 
-	const onChangePasswordHandler = (data: FormValues) => {
+	const onChangePasswordHandler = async (data: FormValues) => {
 		try {
-			changePassword(
+			setLoading(true);
+			
+			await changePassword(
 				{
 					password: data.password!,
 				},
-				'token'
+				route.params.token
 			);
-		} catch (error) {
-			if (error) {
-				console.log(error);
-			}
+
+			setLoading(false);
+			Alert.alert('Sucess', 'Change password successfully', [
+				{ text: 'OK', onPress: () => navigation.navigate('Authentication') },
+			]);
+
+		} catch (error: any) {
+			setLoading(false);
+
+			Alert.alert('Change password failed', error.message, [
+				{ text: 'OK', onPress: () => navigation.navigate('Authentication') },
+			]);
 		}
 	};
 
 	const backToResetPasswordScreen = () => {
-		navigation.navigate('ResetPassword')
+		navigation.navigate('ResetPassword');
+	};
+
+	if (loading) {
+		<Loading />;
 	}
 
 	return (
@@ -81,7 +108,7 @@ const ChangePassword = ({ navigation }): JSX.Element => {
 				<KeyboardAvoidingView behavior='position'>
 					<>
 						<Slogan />
-						<Form title='Registration'>
+						<Form title='Change password'>
 							<ControlledInput
 								name='password'
 								control={control}
@@ -100,13 +127,13 @@ const ChangePassword = ({ navigation }): JSX.Element => {
 							<ControlledInput
 								name='passwordConfirm'
 								control={control}
-								placeholder='Password'
+								placeholder='Password Confirm'
 								autoCapitalize='none'
-								secureTextEntry={seePasswordItens.prop}
+								secureTextEntry={seePasswordConfirmItens.prop}
 								error={errors.passwordConfirm}>
-								<Button onPressHandler={seePasswordHandler}>
+								<Button onPressHandler={seePasswordConfirmHandler}>
 									<IconButton
-										icon={seePasswordItens.icon}
+										icon={seePasswordConfirmItens.icon}
 										size={20}
 										color={theme.colors.grey08}
 									/>
@@ -116,7 +143,7 @@ const ChangePassword = ({ navigation }): JSX.Element => {
 								onPressHandler={handleSubmit(onChangePasswordHandler)}
 								padding={15}>
 								<Title fontSize={35} color={theme.colors.green01}>
-									Register
+									Change
 								</Title>
 								<IconButton
 									icon='arrow-forward-outline'
@@ -135,7 +162,7 @@ const ChangePassword = ({ navigation }): JSX.Element => {
 								Back
 							</Title>
 						</Button>
-						<Footer marginTop={30} />
+						<Footer marginTop={50} />
 					</>
 				</KeyboardAvoidingView>
 			</TouchableWithoutFeedback>

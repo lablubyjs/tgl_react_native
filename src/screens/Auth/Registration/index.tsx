@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+	Alert,
 	Keyboard,
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
@@ -17,9 +18,14 @@ import {
 	Button,
 	IconButton,
 	ControlledInput,
+	Loading,
 } from '@components';
 
+import { useAppDispatch } from '@hooks';
+
 import { userServices } from '@services';
+
+import { addUser } from '@store/user-slice';
 
 import { FormValues } from '@types';
 
@@ -35,10 +41,11 @@ const schema = yup.object({
 });
 
 const Registration = ({ navigation }): JSX.Element => {
-	const [seePasswordItens, setSeePasswordItens] = useState({
-		prop: true,
-		icon: 'eye',
-	});
+	const dispatch = useAppDispatch();
+
+	const [loading, setLoading] = useState(false);
+
+	const [seePasswordItens, setSeePasswordItens] = useState({ prop: true, icon: 'eye' });
 
 	const seePasswordHandler = () => {
 		setSeePasswordItens((prevSeePasswordItems) => ({
@@ -57,23 +64,33 @@ const Registration = ({ navigation }): JSX.Element => {
 
 	const { createUser } = userServices();
 
-	const onRegistrationHandler = (data: FormValues) => {
+	const onRegistrationHandler = async (data: FormValues) => {
 		try {
-			createUser({
+			setLoading(true);
+
+			const response = await createUser({
 				name: data.name!,
 				email: data.email!,
 				password: data.password!,
 			});
-		} catch (error) {
-			if (error) {
-				console.log(error);
-			}
+
+			setLoading(false);
+			dispatch(addUser(response));
+			
+		} catch (error: any) {
+			setLoading(false);
+
+			Alert.alert('Registration failed', error.error.message, [{ text: 'OK' }]);
 		}
 	};
 
 	const backToAuthenticationScreen = () => {
 		navigation.navigate('Authentication');
 	};
+
+	if (loading) {
+		return <Loading />;
+	}
 
 	return (
 		<Container>

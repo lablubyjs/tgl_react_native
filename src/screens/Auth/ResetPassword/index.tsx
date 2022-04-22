@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+	Alert,
 	Keyboard,
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
@@ -17,6 +18,7 @@ import {
 	Button,
 	IconButton,
 	ControlledInput,
+	Loading,
 } from '@components';
 
 import { authServices } from '@services';
@@ -33,17 +35,7 @@ const schema = yup.object({
 });
 
 const ResetPassword = ({ navigation }): JSX.Element => {
-	const [seePasswordItens, setSeePasswordItens] = useState({
-		prop: true,
-		icon: 'eye',
-	});
-
-	const seePasswordHandler = () => {
-		setSeePasswordItens((prevSeePasswordItems) => ({
-			prop: !prevSeePasswordItems.prop,
-			icon: prevSeePasswordItems.icon === 'eye' ? 'eye-off' : 'eye',
-		}));
-	};
+	const [loading, setLoading] = useState(false);
 
 	const {
 		control,
@@ -55,17 +47,27 @@ const ResetPassword = ({ navigation }): JSX.Element => {
 
 	const { resetPassword } = authServices();
 
-	const onResetPasswordHandler = (data: FormValues) => {
+	const onResetPasswordHandler = async (data: FormValues) => {
 		try {
-			resetPassword({
+			setLoading(true);
+
+			const response = await resetPassword({
 				email: data.email!,
 			});
-		} catch (error) {
-			if (error) {
-				console.log(error);
-			}
+
+			setLoading(false);
+			navigation.navigate('ChangePassword', { token: response.token });
+
+		} catch (error: any) {
+			Alert.alert('Send Link Failed', error.message, [{ text: 'OK' }]);
+
+			setLoading(false);
 		}
 	};
+
+	if (loading) {
+		return <Loading />;
+	}
 
 	const backToAuthenticationScreen = () => {
 		navigation.navigate('Authentication');
