@@ -4,8 +4,8 @@ import { IResetResponse } from './AuthInterfaces';
 import { IChangeResponse } from './AuthInterfaces';
 
 import { IBodyUser } from './UserInterfaces';
-import { User } from './UserInterfaces';
-import { Token } from './UserInterfaces';
+import { IUser } from './UserInterfaces';
+import { IToken } from './UserInterfaces';
 import { ICreateUserResponse } from './UserInterfaces';
 import { IUpdateUserResponse } from './UserInterfaces';
 import { IMyAccountResponse } from './UserInterfaces';
@@ -30,8 +30,8 @@ export type {
 	IResetResponse,
 	IChangeResponse,
 	IBodyUser,
-	User,
-	Token,
+	IUser,
+	IToken,
 	ICreateUserResponse,
 	IUpdateUserResponse,
 	IMyAccountResponse,

@@ -14,7 +14,8 @@ export default {
 		grey10: '#adc0c4',
 		white01: '#ffffff',
 		white02: '#f4f4f4',
-		white03: '#f7f7f7'
+		white03: '#f7f7f7',
+		red01: '#dc1637'
 	},
 
 	fonts: {
