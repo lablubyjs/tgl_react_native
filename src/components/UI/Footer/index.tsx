@@ -1,8 +1,8 @@
 import { Content, Copyright } from './styles';
 
-const Footer = () => {
+const Footer = ({ marginTop }): JSX.Element => {
 	return (
-		<Content>
+		<Content marginTop={marginTop}>
 			<Copyright>Copyright 2020 Luby Software</Copyright>
 		</Content>
 	);
