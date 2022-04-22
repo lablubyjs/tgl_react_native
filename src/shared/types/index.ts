@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextInputProps } from 'react-native';
+
 import { Control, FieldError } from 'react-hook-form';
 
 import { IBet, IGameType, IUser, IToken } from '@interfaces';

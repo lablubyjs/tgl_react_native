@@ -13,12 +13,13 @@ export interface IListBetsResponse {
 
 export interface IBet {
 	id: number;
-	userID: number;
-	gameID: number;
-	choosenNumbers: string;
+	user_id: number;
+	game_id: number;
+	choosen_numbers: string;
 	price: number;
-	createdAt: Date;
-	type: Type;
+	created_at: Date;
+	updated_at?: Date;
+	type?: Type;
 }
 
 interface Type {
@@ -27,15 +28,5 @@ interface Type {
 }
 
 export interface INewBetResponse {
-	bet: Bet[];
-}
-
-interface Bet {
-	choosenNumbers: string;
-	userID: number;
-	gameID: number;
-	price: number;
-	createdAt: Date;
-	updatedAt: Date;
-	id: number;
+	bet: IBet[];
 }

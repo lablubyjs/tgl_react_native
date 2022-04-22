@@ -1,7 +1,6 @@
 import instance from '../axios.config';
 
 import {
-	ICreateUserResponse,
 	IBodyGames,
 	ICreateGameResponse,
 	IListGamesReponse,

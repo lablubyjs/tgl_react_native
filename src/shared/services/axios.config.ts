@@ -1,7 +1,9 @@
 import axios, { AxiosError } from 'axios';
 
+import { useAppSelector } from '@hooks';
+
 const instance = axios.create({
-	baseURL: 'http://192.168.1.7:3333',
+	baseURL: 'http://192.168.1.13:3333',
 	headers: {
 		'Content-Type': 'application/json',
 		Accept: 'application/json',
@@ -10,7 +12,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
 	async (config) => {
-		const isToken = false;
+		const isToken = useAppSelector((state) => state.user.token['token']);
 
 		if (isToken) {
 			config.headers!.Authorization = `Bearer ` + isToken;

@@ -16,11 +16,15 @@ export interface IToken {
 }
 
 export interface IUser {
+	id: number;
 	email: string;
+	isAdmin?: number;
 	name: string;
+	token: null;
+	tokenCreatedAt?: null;
 	createdAt: Date;
 	updatedAt: Date;
-	id: number;
+	picture?: null;
 }
 
 export interface IUpdateUserResponse {
