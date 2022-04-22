@@ -8,6 +8,7 @@ import Footer from './UI/Footer';
 import Button from './UI/Buttons/Button';
 import IconButton from './UI/Buttons/IconButton';
 import LinkComponent from './UI/Link';
+import Loading from './UI/Loading';
 
 export {
 	Slogan,
@@ -17,5 +18,6 @@ export {
 	Footer,
 	Button,
 	IconButton,
-	LinkComponent
+	LinkComponent,
+	Loading,
 };

@@ -4,9 +4,8 @@ import { InputProps } from '@types';
 
 import { InputContainer, InputText } from './styles';
 
-const Input = ({ children, value, ...rest }: InputProps) => {
+const Input = ({ children, value, ...rest }: InputProps): JSX.Element => {
 	const [isFocused, setIsFocused] = useState(false);
-	const [isFilled, setIsFilled] = useState(false);
 
 	function handleInputFocus() {
 		setIsFocused(true);
@@ -14,7 +13,6 @@ const Input = ({ children, value, ...rest }: InputProps) => {
 
 	function handleInputBlur() {
 		setIsFocused(false);
-		setIsFilled(!!value);
 	}
 
 	return (

@@ -1,4 +1,5 @@
 import { Link } from '@react-navigation/native';
+
 import { LinkContainer } from './style';
 
 const LinkComponent = ({ goTo, children }): JSX.Element => {

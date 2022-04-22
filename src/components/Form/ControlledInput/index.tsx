@@ -1,4 +1,5 @@
-import { Control, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
+
 import Input from '../Input';
 
 import { ControlledInputProps } from '@types';
@@ -10,7 +11,7 @@ const ControlledInput = ({
 	name,
 	error,
 	...rest
-}: ControlledInputProps) => {
+}: ControlledInputProps): JSX.Element => {
 	return (
 		<>
 			<Controller
