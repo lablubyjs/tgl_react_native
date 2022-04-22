@@ -37,7 +37,7 @@ export type InputProps = TextInputProps & {
 export type ControlledInputProps = InputProps & {
 	control: Control<any>;
 	name: string;
-	error?: FieldError
+	error?: FieldError;
 };
 
 export type BetsSlice = {
@@ -54,3 +54,14 @@ export type UserSlice = {
 	user: IUser | {};
 	token: IToken | {};
 };
+
+export type Navigation = {
+	navigate: (value: string) => void;
+};
+
+export type ButtonGameProps = {
+	name: string;
+	color: string;
+	isSelected: boolean;
+	onPressHandler: () => void;
+}

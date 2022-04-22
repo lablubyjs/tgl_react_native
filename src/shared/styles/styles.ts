@@ -22,3 +22,7 @@ export const TitleLight = styled.Text`
 	font-family: ${({ theme }) => theme.fonts.italic};
 	color: ${({ theme }) => theme.colors.grey04};
 `;
+
+export const Content = styled.View`
+	flex: 1;
+`;
