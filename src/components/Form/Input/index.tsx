@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { InputProps } from '@types';
+import { InputProps } from '@shared/types';
 
 import { InputContainer, InputText } from './styles';
 

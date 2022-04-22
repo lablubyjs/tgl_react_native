@@ -3,7 +3,7 @@ import {
 	ILoginResponse,
 	IChangeResponse,
 	IResetResponse,
-} from '@interfaces';
+} from '@shared/interfaces';
 
 export interface IAuth {
 	login: ({ email, password }: IBodyAuth) => Promise<ILoginResponse>;

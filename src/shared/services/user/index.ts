@@ -5,7 +5,7 @@ import {
 	ICreateUserResponse,
 	IMyAccountResponse,
 	IUpdateUserResponse,
-} from '@interfaces';
+} from '@shared/interfaces';
 
 import { IUser } from './interfaces';
 

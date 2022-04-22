@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IListBetsResponse } from '@interfaces';
+import { IListBetsResponse } from '@shared/interfaces';
 
-import { betsServices } from '@services';
+import { betsServices } from '@shared/services';
 
-import { BetsSlice } from '@types';
+import { BetsSlice } from '@shared/types';
 
 const { listBets } = betsServices();
 

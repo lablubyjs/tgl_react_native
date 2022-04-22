@@ -3,7 +3,7 @@ import {
 	ICreateUserResponse,
 	IMyAccountResponse,
 	IUpdateUserResponse,
-} from '@interfaces';
+} from '@shared/interfaces';
 
 export interface IUser {
    createUser: ({ email, password, name }: IBodyUser) => Promise<ICreateUserResponse>;

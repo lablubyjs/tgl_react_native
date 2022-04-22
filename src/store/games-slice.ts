@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IGameType, IListGamesReponse } from '@interfaces';
+import { IGameType, IListGamesReponse } from '@shared/interfaces';
 
-import { gamesServices } from '@services';
+import { gamesServices } from '@shared/services';
 
-import { GamesSlice } from '@types';
+import { GamesSlice } from '@shared/types';
 
 const { listGames } = gamesServices();
 

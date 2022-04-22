@@ -5,7 +5,7 @@ import {
 	ICreateGameResponse,
 	IListGamesReponse,
 	IUpdateGameResponse,
-} from '@interfaces';
+} from '@shared/interfaces';
 
 import { IGames } from './interfaces';
 

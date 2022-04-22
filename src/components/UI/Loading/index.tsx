@@ -1,6 +1,6 @@
 import { ActivityIndicator } from 'react-native';
 
-import { theme } from '@styles';
+import { theme } from '@shared/styles';
 
 import { LoadingContainer } from './style';
 

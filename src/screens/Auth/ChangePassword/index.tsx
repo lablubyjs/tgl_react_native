@@ -21,11 +21,11 @@ import {
 	Loading,
 } from '@components';
 
-import { authServices } from '@services';
+import { authServices } from '@shared/services';
 
-import { FormValues } from '@types';
+import { FormValues } from '@shared/types';
 
-import { theme, Container, Title } from '@styles';
+import { theme, Container, Title } from '@shared/styles';
 
 const schema = yup.object({
 	password: yup.string().required('Please enter the password'),
@@ -61,7 +61,8 @@ const ChangePassword = ({ navigation, route }): JSX.Element => {
 
 	const {
 		control,
-		handleSubmit,
+		handleSubmit, 
+		reset,
 		formState: { errors },
 	} = useForm<FormValues>({
 		resolver: yupResolver(schema),
@@ -86,6 +87,8 @@ const ChangePassword = ({ navigation, route }): JSX.Element => {
 			]);
 
 		} catch (error: any) {
+			reset({ password: '', passwordConfirm: '' });
+
 			setLoading(false);
 
 			Alert.alert('Change password failed', error.message, [

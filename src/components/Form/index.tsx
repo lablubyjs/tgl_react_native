@@ -1,6 +1,6 @@
-import { FormProps } from '@types';
+import { FormProps } from '@shared/types';
 
-import { theme, Title } from '@styles';
+import { theme, Title } from '@shared/styles';
 
 import { Content, FormContainer } from './styles';
 

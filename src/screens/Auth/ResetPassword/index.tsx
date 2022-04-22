@@ -21,11 +21,11 @@ import {
 	Loading,
 } from '@components';
 
-import { authServices } from '@services';
+import { authServices } from '@shared/services';
 
-import { FormValues } from '@types';
+import { FormValues } from '@shared/types';
 
-import { theme, Container, Title } from '@styles';
+import { theme, Container, Title } from '@shared/styles';
 
 const schema = yup.object({
 	email: yup
@@ -40,6 +40,7 @@ const ResetPassword = ({ navigation }): JSX.Element => {
 	const {
 		control,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<FormValues>({
 		resolver: yupResolver(schema),
@@ -59,9 +60,12 @@ const ResetPassword = ({ navigation }): JSX.Element => {
 			navigation.navigate('ChangePassword', { token: response.token });
 
 		} catch (error: any) {
-			Alert.alert('Send Link Failed', error.message, [{ text: 'OK' }]);
+			reset({ email: '' });
 
 			setLoading(false);
+
+			Alert.alert('Send Link Failed', error.message, [{ text: 'OK' }]);
+
 		}
 	};
 

@@ -2,7 +2,7 @@ import { Controller } from 'react-hook-form';
 
 import Input from '../Input';
 
-import { ControlledInputProps } from '@types';
+import { ControlledInputProps } from '@shared/types';
 
 import { Error } from './style';
 

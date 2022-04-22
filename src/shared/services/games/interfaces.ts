@@ -3,7 +3,7 @@ import {
 	ICreateGameResponse,
 	IListGamesReponse,
 	IUpdateGameResponse,
-} from '@interfaces';
+} from '@shared/interfaces';
 
 export interface IGames {
 	createGame: ({

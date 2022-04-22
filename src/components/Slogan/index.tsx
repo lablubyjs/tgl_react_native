@@ -1,4 +1,4 @@
-import { theme, Title } from '@styles';
+import { theme, Title } from '@shared/styles';
 
 import { Content, TitleContainer } from './styles';
 

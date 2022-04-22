@@ -23,13 +23,13 @@ import {
 
 import { useAppDispatch } from '@hooks';
 
-import { userServices } from '@services';
+import { userServices } from '@shared/services';
 
 import { addUser } from '@store/user-slice';
 
-import { FormValues } from '@types';
+import { FormValues } from '@shared/types';
 
-import { theme, Container, Title } from '@styles';
+import { theme, Container, Title } from '@shared/styles';
 
 const schema = yup.object({
 	name: yup.string().required('Please enter a name'),
@@ -57,6 +57,7 @@ const Registration = ({ navigation }): JSX.Element => {
 	const {
 		control,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<FormValues>({
 		resolver: yupResolver(schema),
@@ -75,9 +76,11 @@ const Registration = ({ navigation }): JSX.Element => {
 			});
 
 			setLoading(false);
-			dispatch(addUser(response));
+			await dispatch(addUser(response));
 			
 		} catch (error: any) {
+			reset({ name: '', email: '', password: '' });
+
 			setLoading(false);
 
 			Alert.alert('Registration failed', error.error.message, [{ text: 'OK' }]);

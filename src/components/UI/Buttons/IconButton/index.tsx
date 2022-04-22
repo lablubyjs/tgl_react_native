@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 
-import { IconButtonProps } from '@types';
+import { IconButtonProps } from '@shared/types';
 
 import { IconContainer } from './styles';
 

@@ -5,7 +5,7 @@ import {
 	IResetResponse,
 	IBodyAuth,
 	ILoginResponse,
-} from '@interfaces';
+} from '@shared/interfaces';
 
 import { IAuth } from './interfaces';
 

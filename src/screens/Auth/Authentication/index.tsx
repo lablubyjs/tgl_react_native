@@ -24,13 +24,13 @@ import {
 
 import { useAppDispatch } from '@hooks';
 
-import { authServices } from '@services';
+import { authServices } from '@shared/services';
 
 import { addUser } from '@store/user-slice';
 
-import { FormValues } from '@types';
+import { FormValues } from '@shared/types';
 
-import { theme, Container, Title, TitleLight } from '@styles';
+import { theme, Container, Title, TitleLight } from '@shared/styles';
 
 const schema = yup.object({
 	email: yup
@@ -45,7 +45,10 @@ const Authentication = ({ navigation }): JSX.Element => {
 
 	const [loading, setLoading] = useState(false);
 
-	const [seePasswordItens, setSeePasswordItens] = useState({ prop: true, icon: 'eye' });
+	const [seePasswordItens, setSeePasswordItens] = useState({
+		prop: true,
+		icon: 'eye',
+	});
 
 	const seePasswordHandler = () => {
 		setSeePasswordItens((prevSeePasswordItems) => ({
@@ -57,6 +60,7 @@ const Authentication = ({ navigation }): JSX.Element => {
 	const {
 		control,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<FormValues>({
 		resolver: yupResolver(schema),
@@ -77,8 +81,9 @@ const Authentication = ({ navigation }): JSX.Element => {
 			await dispatch(addUser(response));
 
 		} catch (error: any) {
+			reset({ email: '', password: '' });
+			
 			setLoading(false);
-
 			Alert.alert('Log in failed', error.message, [{ text: 'OK' }]);
 		}
 	};

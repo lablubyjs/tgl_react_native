@@ -3,7 +3,7 @@ import { TextInputProps } from 'react-native';
 
 import { Control, FieldError } from 'react-hook-form';
 
-import { IBet, IGameType, IUser, IToken } from '@interfaces';
+import { IBet, IGameType, IUser, IToken } from '@shared/interfaces';
 
 export type FormProps = {
 	children: React.ReactNode;
