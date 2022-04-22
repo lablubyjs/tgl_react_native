@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { ILoginResponse } from '@shared/interfaces';
@@ -22,11 +24,13 @@ const userSlice = createSlice({
 		addUser: (state, action: PayloadAction<ILoginResponse>) => {
 			state.user = action.payload.user;
 			state.token = action.payload.token;
+			AsyncStorage.setItem('token', action.payload.token.token);
 		},
 
 		removeUser: (state) => {
 			state.user = initialUserState.user;
 			state.token = initialUserState.token;
+			AsyncStorage.removeItem('token');
 		},
 	},
 
