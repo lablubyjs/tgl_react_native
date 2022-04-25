@@ -5,13 +5,13 @@ interface IFooterProps {
 }
 
 export const Content = styled.View<IFooterProps>`
-	height: 50px;
+	height: 60px;
 	align-items: center;
 	justify-content: center;
 	border-top-width: 1px;
 	border-top-color: ${({ theme }) => theme.colors.grey01};
 	margin-top: ${({ marginTop }) => `${marginTop}px`};
-	padding-top: 15px;
+	padding: 15px;
 `;
 
 export const Copyright = styled.Text`

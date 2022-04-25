@@ -4,7 +4,7 @@ import { theme } from '@shared/styles';
 
 import { LoadingContainer } from './style';
 
-const Loading = () => {
+const Loading = (): JSX.Element => {
 	return (
 		<LoadingContainer>
 			<ActivityIndicator size='large' color={theme.colors.green01} />

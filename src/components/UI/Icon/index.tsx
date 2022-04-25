@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 
-import { IconButtonProps } from '@shared/types';
+import { IconProps } from '@shared/types';
 
 import { IconContainer } from './styles';
 
-const IconButton = ({ icon, size, color }: IconButtonProps): JSX.Element => {
+const Icon = ({ icon, size, color }: IconProps): JSX.Element => {
 	return (
 		<IconContainer>
 			<Ionicons name={icon} size={size} color={color} />
@@ -12,4 +12,4 @@ const IconButton = ({ icon, size, color }: IconButtonProps): JSX.Element => {
 	);
 };
 
-export default IconButton;
+export default Icon;
