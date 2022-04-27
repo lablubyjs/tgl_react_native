@@ -24,29 +24,6 @@ export interface IUser {
 	tokenCreatedAt?: null;
 	createdAt: Date;
 	updatedAt: Date;
-	picture?: null;
-}
-
-export interface IUpdateUserResponse {
-	id: number;
-	email: string;
-	isAdmin: number;
-	name: string;
-	token: string;
-	tokenCreatedAt: Date;
-	createdAt: Date;
-	updatedAt: Date;
-}
-
-export interface IMyAccountResponse {
-	id: number;
-	email: string;
-	isAdmin: number;
-	name: string;
-	token: null;
-	tokenCreatedAt: null;
-	createdAt: Date;
-	updatedAt: Date;
 	bets?: any[];
-	picture: null;
+	picture?: null;
 }

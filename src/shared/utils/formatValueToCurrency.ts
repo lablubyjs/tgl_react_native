@@ -1,10 +1,8 @@
-export const formatValueToCurrency = (value: string) => {
-	const number = Number(value);
+export const formatValueToCurrency = (value: number) => {
+	const price = value
+		.toFixed(2)
+		.replace('.', ',')
+		.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-	const price = number.toLocaleString('pt-br', {
-		style: 'currency',
-		currency: 'BRL',
-	});
-
-	return price;
+	return `R$ ${price}`;
 };

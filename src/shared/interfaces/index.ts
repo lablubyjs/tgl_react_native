@@ -7,8 +7,6 @@ import { IBodyUser } from './UserInterfaces';
 import { IUser } from './UserInterfaces';
 import { IToken } from './UserInterfaces';
 import { ICreateUserResponse } from './UserInterfaces';
-import { IUpdateUserResponse } from './UserInterfaces';
-import { IMyAccountResponse } from './UserInterfaces';
 
 import { IBodyGames } from './GamesInterfaces';
 import { ICreateGameResponse } from './GamesInterfaces';
@@ -33,8 +31,6 @@ export type {
 	IUser,
 	IToken,
 	ICreateUserResponse,
-	IUpdateUserResponse,
-	IMyAccountResponse,
 	IBodyGames,
 	ICreateGameResponse,
 	IUpdateGameResponse,

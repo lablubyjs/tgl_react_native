@@ -1,11 +1,7 @@
-import { useAppSelector } from '@hooks';
-
-export const getGamePriceNumber = (id: number) => {
-	const games = useAppSelector((state) => state.games.list);
-
+export const getGamePriceNumber = (games: any, id: number) => {
 	const gameSelected = games.find((game: any) => {
 		return game.id === id;
 	});
 
-	return Number(gameSelected!.price);
+	return Number(gameSelected.price);
 };

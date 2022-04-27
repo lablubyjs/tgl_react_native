@@ -1,5 +1,28 @@
 import theme from './theme';
 
-import { Container, Title, TitleLight } from './styles';
+import {
+	Container,
+	ContainerModal,
+	Text,
+	TextRegular,
+	TextBoldRegular,
+	TextLight,
+	TextLightItalic,
+	Content,
+	TextContainer,
+	shimmerPlaceholderStyle,
+} from './styles';
 
-export { theme, Container, Title, TitleLight };
+export {
+	theme,
+	Container,
+	ContainerModal,
+	Text,
+	TextRegular,
+	TextBoldRegular,
+	TextLight,
+	TextLightItalic,
+	Content,
+	TextContainer,
+	shimmerPlaceholderStyle,
+};

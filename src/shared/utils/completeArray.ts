@@ -19,5 +19,5 @@ export const completeArray = (
 		}
 	}
 
-	return newArray;
+	return array.concat(newArray);
 };

@@ -3,24 +3,23 @@ import instance from '../axios.config';
 import {
 	IBodyUser,
 	ICreateUserResponse,
-	IMyAccountResponse,
-	IUpdateUserResponse,
+	IUser,
 } from '@shared/interfaces';
 
-import { IUser } from './interfaces';
+import { IUserService } from './interfaces';
 
-const userServices = (): IUser => {
+const userServices = (): IUserService => {
    
 	async function createUser(body: IBodyUser): Promise<ICreateUserResponse> {
 		return instance.post('/user/create', body);
 	}
 
-	async function updateMyUser(body: IBodyUser): Promise<IUpdateUserResponse> {
+	async function updateMyUser(body: IBodyUser): Promise<IUser> {
 		return instance.put('/user/update', body);
 	}
 
-	async function myAccount(): Promise<IMyAccountResponse> {
-		return instance.post('/user/my-account');
+	async function myAccount(): Promise<IUser> {
+		return instance.get('/user/my-account');
 	}
 
 	return { createUser, updateMyUser, myAccount };

@@ -3,7 +3,13 @@ import { TextInputProps } from 'react-native';
 
 import { Control, FieldError } from 'react-hook-form';
 
-import { IBet, IGameType, IUser, IToken } from '@shared/interfaces';
+import {
+	IListBetsResponse,
+	IGameType,
+	IUser,
+	IToken,
+	IGame,
+} from '@shared/interfaces';
 
 export type FormProps = {
 	children: React.ReactNode;
@@ -23,7 +29,7 @@ export type ButtonProps = {
 	padding?: number;
 };
 
-export type IconButtonProps = {
+export type IconProps = {
 	icon: any;
 	size: number;
 	color: string;
@@ -41,13 +47,13 @@ export type ControlledInputProps = InputProps & {
 };
 
 export type BetsSlice = {
-	bets: IBet[] | [];
+	bets: IListBetsResponse | [];
 	querys: string[];
 };
 
 export type GamesSlice = {
 	list: IGameType[];
-	currentGame: IGameType | {};
+	currentGame: IGameType;
 };
 
 export type UserSlice = {
@@ -64,4 +70,61 @@ export type ButtonGameProps = {
 	color: string;
 	isSelected: boolean;
 	onPressHandler: () => void;
-}
+};
+
+export type BetItemProps = {
+	color: string;
+	numbers: string;
+	date: any;
+	price: number;
+	name: string;
+};
+
+export type CartItemProps = {
+	color: string;
+	numbers: number[];
+	gameName: string;
+	gamePrice: string;
+	onDeleteItem: () => void;
+};
+
+export type GameActionsProps = {
+	onCompleteGame: () => void;
+	onClearGame: () => void;
+	onAddToCart: () => void;
+};
+
+export type GamesNumbersProps = {
+	range: number;
+	gameColor: string;
+	numbers: number[];
+	onAddNumber: (number: number) => void;
+	onRemoveNumber: (number: number) => void;
+};
+
+export type ButtonActionProps = {
+	name: string;
+	color: string;
+	backgroundColor: string;
+	onPressHandler: () => void;
+	width: number;
+	children?: React.ReactNode;
+};
+
+export type ButtonNumberProps = {
+	text: string;
+	color: string;
+	onPressHandler: () => void;
+};
+
+export type ModalProps = {
+	children: React.ReactNode;
+	isVisible: boolean;
+};
+
+export type CartComponentProps = {
+	cartItems: IGame[];
+	cartTotal: number;
+	onSave: () => void;
+	onDeleteItem: (index: number) => void;
+};

@@ -1,11 +1,7 @@
-import { useAppSelector } from '@hooks';
-
-export const getGameColor = (id: number) => {
-	const games = useAppSelector((state) => state.games.list);
-
+export const getGameColor = (games: any, id: number) => {
 	const gameSelected = games.find((game: any) => {
 		return game.id === id;
 	});
 
-	return gameSelected!.color;
+	return gameSelected ? gameSelected!.color : 'transparent';
 };

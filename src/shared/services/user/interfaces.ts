@@ -1,14 +1,13 @@
 import {
 	IBodyUser,
 	ICreateUserResponse,
-	IMyAccountResponse,
-	IUpdateUserResponse,
+	IUser,
 } from '@shared/interfaces';
 
-export interface IUser {
+export interface IUserService {
    createUser: ({ email, password, name }: IBodyUser) => Promise<ICreateUserResponse>;
 
-   updateMyUser: ({ email, name }: IBodyUser) => Promise<IUpdateUserResponse>;
+   updateMyUser: ({ email, name }: IBodyUser) => Promise<IUser>;
 
-   myAccount: () => Promise<IMyAccountResponse>;
+   myAccount: () => Promise<IUser>;
 }
