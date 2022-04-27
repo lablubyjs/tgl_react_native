@@ -19,7 +19,7 @@ import { betsServices } from '@shared/services';
 
 import { emptyCart, removeToCart } from '@store/cart-slice';
 import { asyncAddBets, resetQuerys } from '@store/bets-slice';
-import { asyncAddGames } from '@store/games-slice';
+import { asyncAddGames, selectFirstGame } from '@store/games-slice';
 
 import { formatValueToCurrency, getGamePriceNumber } from '@shared/utils';
 
@@ -50,17 +50,12 @@ const Cart = ({ navigation }): JSX.Element => {
 		setShowMenu(!showMenu);
 	};
 
-	const goBackHandler = () => {
-		dispatch(asyncAddGames());
-		dispatch(resetQuerys());
-		dispatch(asyncAddBets('/bet/all-bets'));
+	const goBackHandler = async () => {
 		navigation.goBack();
 	};
 
-	const goToHomeScreen = () => {
-		dispatch(resetQuerys());
-		dispatch(asyncAddGames());
-		navigation.navigate('Authentication');
+	const goToHomeScreen = async () => {
+		navigation.navigate('Home');
 	};
 
 	const newBetHandler = async () => {
@@ -71,7 +66,7 @@ const Cart = ({ navigation }): JSX.Element => {
 			setLoading(false);
 
 			Alert.alert('Sucess', 'Successfully saved games', [
-				{ text: 'OK', onPress: () => navigation.navigate('Home') },
+				{ text: 'OK', onPress: goToHomeScreen },
 			]);
 		} catch (error: any) {
 			setLoading(false);

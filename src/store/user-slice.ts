@@ -26,17 +26,16 @@ const userSlice = createSlice({
 			state.token = action.payload.token;
 			AsyncStorage.setItem('token', action.payload.token!.token);
 		},
-
-		removeUser: (state) => {
-			state.user = initialUserState.user;
-			state.token = initialUserState.token;
-			AsyncStorage.removeItem('token');
-		},
 	},
 
 	extraReducers: (builder) => {
 		builder.addCase(asyncAddUser.fulfilled, (state, action) => {
 			state.user = action.payload;
+		});
+
+		builder.addCase(asyncRemoveUser.fulfilled, (state) => {
+			state.user = initialUserState.user;
+			state.token = initialUserState.token;
 		});
 	},
 });
@@ -46,6 +45,13 @@ export const asyncAddUser = createAsyncThunk('user/fetchAddUser', async () => {
 	return response;
 });
 
-export const { addUser, removeUser } = userSlice.actions;
+export const asyncRemoveUser = createAsyncThunk(
+	'user/fetchRemoveUser',
+	async () => {
+		await AsyncStorage.removeItem('token');
+	}
+);
+
+export const { addUser } = userSlice.actions;
 
 export default userSlice.reducer;

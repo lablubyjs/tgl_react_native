@@ -30,7 +30,7 @@ export default function App() {
 	return (
 		<Provider store={store}>
 			<ThemeProvider theme={theme}>
-				<StatusBar style='auto' />
+				<StatusBar style='auto' backgroundColor='#ffffff' />
 				<AppNavigation />
 			</ThemeProvider>
 		</Provider>

@@ -57,7 +57,6 @@ const Registration = ({ navigation }): JSX.Element => {
 	const {
 		control,
 		handleSubmit,
-		reset,
 		formState: { errors },
 	} = useForm<FormValues>({
 		resolver: yupResolver(schema),
@@ -79,8 +78,6 @@ const Registration = ({ navigation }): JSX.Element => {
 			await dispatch(addUser(response));
 			
 		} catch (error: any) {
-			reset({ name: '', email: '', password: '' });
-
 			setLoading(false);
 
 			Alert.alert('Registration failed', error.error.message, [{ text: 'OK' }]);

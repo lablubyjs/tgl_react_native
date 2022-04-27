@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -44,8 +44,8 @@ const UserNavigation = () => {
 	const dispatch = useAppDispatch();
 
 	const url = useAppSelector((state) => state.bets.querys.join(''));
-	
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		const fetchData = async () => {
 			await dispatch(asyncAddGames());
 			await dispatch(asyncAddMinCartValue());
@@ -74,14 +74,15 @@ const UserNavigation = () => {
 
 const AppNavigation = () => {
 	const [token, setToken] = useState<any>();
+	const userToken = useAppSelector((state) => state.user.token);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const fetchToken = async () => {
 			setToken(await AsyncStorage.getItem('token'));
 		};
 
 		fetchToken();
-	}, []);
+	}, [userToken]);
 
 	return token ? <UserNavigation /> : <AuthNavigation />;
 };

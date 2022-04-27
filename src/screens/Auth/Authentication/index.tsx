@@ -60,7 +60,6 @@ const Authentication = ({ navigation }): JSX.Element => {
 	const {
 		control,
 		handleSubmit,
-		reset,
 		formState: { errors },
 	} = useForm<FormValues>({
 		resolver: yupResolver(schema),
@@ -81,8 +80,6 @@ const Authentication = ({ navigation }): JSX.Element => {
 			await dispatch(addUser(response));
 
 		} catch (error: any) {
-			reset({ email: '', password: '' });
-			
 			setLoading(false);
 			Alert.alert('Log in failed', error.message, [{ text: 'OK' }]);
 		}

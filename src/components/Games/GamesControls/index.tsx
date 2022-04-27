@@ -1,13 +1,26 @@
+import { useEffect, useLayoutEffect } from 'react';
 import ButtonGame from '../../UI/Buttons/ButtonGame';
 
 import { useAppDispatch } from '@hooks';
 
-import { selectedGame } from '@store/games-slice';
+import {
+	asyncAddGames,
+	selectedGame,
+	selectFirstGame,
+} from '@store/games-slice';
 
 import { GamesControlsContainer, GamesButtons, GamesContainer } from './styles';
 
 const GamesControls = ({ games }): JSX.Element => {
 	const dispatch = useAppDispatch();
+
+	useLayoutEffect(() => {
+		const fetchGames = async () => {
+			await dispatch(asyncAddGames());
+			await dispatch(selectFirstGame());
+		};
+		fetchGames();
+	}, []);
 
 	const renderButtonsHandler = ({ item }) => {
 		const onPressHandler = () => {

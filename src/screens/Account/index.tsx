@@ -28,8 +28,6 @@ import { useAppDispatch, useAppSelector } from '@hooks';
 import { userServices } from '@shared/services';
 
 import { asyncAddUser } from '@store/user-slice';
-import { asyncAddGames } from '@store/games-slice';
-import { asyncAddBets, resetQuerys } from '@store/bets-slice';
 
 import { FormValues } from '@shared/types';
 
@@ -68,10 +66,7 @@ const Account = ({ navigation }): JSX.Element => {
 		setShowMenu(!showMenu);
 	};
 
-	const goBackHandler = () => {
-		dispatch(asyncAddGames());
-		dispatch(resetQuerys());
-		dispatch(asyncAddBets('/bet/all-bets'));
+	const goBackHandler = async () => {
 		navigation.goBack();
 	};
 
@@ -103,9 +98,9 @@ const Account = ({ navigation }): JSX.Element => {
 
 	return (
 		<Container>
-			<Header onMenuHandler={showMenuHandler} />
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 				<KeyboardAvoidingView behavior='position'>
+					<Header onMenuHandler={showMenuHandler} />
 					<>
 						<Form title='My Account'>
 							<Image picture={user.picture ? user.picture.file : null} />

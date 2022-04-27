@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import BetItem from '../BetItem';
 
 import { getGameColor } from '@shared/utils';
@@ -20,4 +21,4 @@ const ListBets = ({ bets, games }): JSX.Element => {
 	return <ListBetsContainer data={bets} renderItem={renderBetsHandler} />;
 };
 
-export default ListBets;
+export default memo(ListBets);

@@ -40,7 +40,6 @@ const ResetPassword = ({ navigation }): JSX.Element => {
 	const {
 		control,
 		handleSubmit,
-		reset,
 		formState: { errors },
 	} = useForm<FormValues>({
 		resolver: yupResolver(schema),
@@ -60,8 +59,6 @@ const ResetPassword = ({ navigation }): JSX.Element => {
 			navigation.navigate('ChangePassword', { token: response.token });
 
 		} catch (error: any) {
-			reset({ email: '' });
-
 			setLoading(false);
 
 			Alert.alert('Send Link Failed', error.message, [{ text: 'OK' }]);

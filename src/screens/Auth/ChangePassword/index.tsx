@@ -62,7 +62,6 @@ const ChangePassword = ({ navigation, route }): JSX.Element => {
 	const {
 		control,
 		handleSubmit, 
-		reset,
 		formState: { errors },
 	} = useForm<FormValues>({
 		resolver: yupResolver(schema),
@@ -87,8 +86,6 @@ const ChangePassword = ({ navigation, route }): JSX.Element => {
 			]);
 
 		} catch (error: any) {
-			reset({ password: '', passwordConfirm: '' });
-
 			setLoading(false);
 
 			Alert.alert('Change password failed', error.message, [

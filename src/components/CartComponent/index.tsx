@@ -53,7 +53,7 @@ const CartComponent = ({
 					<CartItems
 						data={cartItems}
 						renderItem={renderCartItensHandler}
-						keyExtractor={({ _, index }) => index}
+						keyExtractor={(item) => item.numbers}
 					/>
 				) : (
 					<CartEmpty>

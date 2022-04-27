@@ -16,7 +16,11 @@ import {
 import { useAppDispatch, useAppSelector } from '@hooks';
 
 import { addToCart } from '@store/cart-slice';
-import { resetSelectedGame, selectFirstGame } from '@store/games-slice';
+import {
+	asyncAddGames,
+	resetSelectedGame,
+	selectFirstGame,
+} from '@store/games-slice';
 
 import { completeArray } from '@shared/utils';
 
@@ -43,7 +47,6 @@ const NewBet = (): JSX.Element => {
 	const dispatch = useAppDispatch();
 
 	useLayoutEffect(() => {
-		dispatch(resetSelectedGame());
 		dispatch(selectFirstGame());
 	}, []);
 

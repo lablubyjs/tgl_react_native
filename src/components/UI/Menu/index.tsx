@@ -6,7 +6,7 @@ import Header from '../Header';
 
 import { useAppDispatch, useAppSelector } from '@hooks';
 
-import { removeUser } from '@store/user-slice';
+import { asyncRemoveUser } from '@store/user-slice';
 
 import { Navigation } from '@shared/types';
 
@@ -21,7 +21,7 @@ const Menu = ({ closeMenu }): JSX.Element => {
 	const { navigate } = useNavigation<Navigation>();
 
 	const logoutHandler = () => {
-		dispatch(removeUser());
+		dispatch(asyncRemoveUser());
 	};
 
 	const goToHomeScreenHandler = () => {

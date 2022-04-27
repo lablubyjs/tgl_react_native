@@ -28,7 +28,7 @@ const Home = (): JSX.Element => {
 	const dispatch = useAppDispatch();
 	const url = useAppSelector((state) => state.bets.querys.join(''));
 
-	const isVisible = bets.length !== 0 || games.length !== 0;
+	const isVisible = bets.length < 0 || games.length !== 0;
 
 	const showMenuHandler = () => {
 		setShowMenu(!showMenu);
