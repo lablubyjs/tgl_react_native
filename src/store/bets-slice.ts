@@ -20,7 +20,7 @@ const betsSlice = createSlice({
 
 	reducers: {
 		addBets: (state, action: PayloadAction<IListBetsResponse>) => {
-			state.bets = action.payload.bets;
+			state.bets = action.payload;
 		},
 
 		addQuery: (state, action: PayloadAction<string>) => {
@@ -42,7 +42,7 @@ const betsSlice = createSlice({
 		builder.addCase(
 			asyncAddBets.fulfilled,
 			(state, action: PayloadAction<IListBetsResponse>) => {
-				state.bets = action.payload.bets;
+				state.bets = action.payload;
 			}
 		);
 	},

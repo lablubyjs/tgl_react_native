@@ -10,7 +10,16 @@ const { listGames } = gamesServices();
 
 const initialGamesState: GamesSlice = {
 	list: [],
-	currentGame: {},
+	currentGame: {
+		color: '',
+		description: '',
+		id: 0,
+		max_number: 0,
+		price: 0,
+		range: 0,
+		type: '',
+		isSelected: false,
+	},
 };
 
 const gamesSlices = createSlice({
@@ -24,8 +33,11 @@ const gamesSlices = createSlice({
 		},
 
 		selectGame: (state, action: PayloadAction<number>) => {
-			const gameIndex = state.list.findIndex((game) => game.id === action.payload);
-			state.list[gameIndex].isSelected = true;
+			state.list.filter((game) => {
+				if (game.id === action.payload) {
+					game.isSelected = !game.isSelected;
+				}
+			});
 		},
 
 		selectedGame: (state, action: PayloadAction<number>) => {
@@ -38,12 +50,33 @@ const gamesSlices = createSlice({
 				}
 			});
 		},
+
+		selectFirstGame: (state) => {
+			state.list[0].isSelected = true;
+			state.currentGame = state.list[0];
+		},
+
+		resetSelectedGame: (state) => {
+			state.list.map(game => game.isSelected = false)
+		}
 	},
 
 	extraReducers: (builder) => {
 		builder.addCase(asyncAddGames.fulfilled, (state, action) => {
-			state.list = action.payload;
-			state.currentGame = action.payload[0];
+			state.list = action.payload.map((item) => {
+				const game = {
+					color: item.color,
+					description: item.description,
+					id: item.id,
+					max_number: item.max_number,
+					price: item.price,
+					range: item.range,
+					type: item.type,
+					isSelected: false,
+				};
+
+				return game;
+			});
 		});
 	},
 });
@@ -56,6 +89,7 @@ export const asyncAddGames = createAsyncThunk(
 	}
 );
 
-export const { addGames, selectedGame, selectGame } = gamesSlices.actions;
+export const { addGames, selectedGame, selectGame, selectFirstGame, resetSelectedGame } =
+	gamesSlices.actions;
 
 export default gamesSlices.reducer;
