@@ -2,11 +2,15 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 
+import { Provider } from 'react-redux';
+
 import { ThemeProvider } from 'styled-components';
 
-import { Login } from '@screens';
+import store from '@store';
 
-import { theme } from '@styles';
+import AppNavigation from '@navigation';
+
+import { theme } from '@shared/styles';
 
 export default function App() {
 	const [loadedFonts] = useFonts({
@@ -24,9 +28,11 @@ export default function App() {
 	}
 
 	return (
-		<ThemeProvider theme={theme}>
-			<StatusBar style='auto' />
-			<Login />
-		</ThemeProvider>
+		<Provider store={store}>
+			<ThemeProvider theme={theme}>
+				<StatusBar style='auto' />
+				<AppNavigation />
+			</ThemeProvider>
+		</Provider>
 	);
 }
