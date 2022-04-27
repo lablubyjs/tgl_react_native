@@ -14,4 +14,6 @@ export const FiltersContainer = styled.View`
 
 export const FiltersButtons = styled.FlatList`
 	width: 100%;
+	padding: 0 0 0 15px;
+	margin-bottom: 10px;
 `;

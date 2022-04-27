@@ -10,7 +10,7 @@ import {
 	formatValueToCurrency,
 	getGameColor,
 	getGameName,
-	getGamePriceNumber,
+	getGamePrice,
 } from '@shared/utils';
 
 import { theme, Text, TextRegular } from '@shared/styles';
@@ -37,7 +37,7 @@ const CartComponent = ({
 				color={getGameColor(games, item.game_id)}
 				numbers={item.numbers}
 				gameName={getGameName(games, item.game_id)}
-				gamePrice={getGamePriceNumber(games, item.game_id)}
+				gamePrice={getGamePrice(games, item.game_id)}
 				onDeleteItem={onDeleteItem.bind(this, index)}
 			/>
 		);
@@ -53,7 +53,7 @@ const CartComponent = ({
 					<CartItems
 						data={cartItems}
 						renderItem={renderCartItensHandler}
-						keyExtractor={({ item }) => item}
+						keyExtractor={({ _, index }) => index}
 					/>
 				) : (
 					<CartEmpty>

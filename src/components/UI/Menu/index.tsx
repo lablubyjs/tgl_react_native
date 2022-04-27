@@ -4,7 +4,7 @@ import Button from '../Buttons/Button';
 import Icon from '../Icon';
 import Header from '../Header';
 
-import { useAppDispatch } from '@hooks';
+import { useAppDispatch, useAppSelector } from '@hooks';
 
 import { removeUser } from '@store/user-slice';
 
@@ -13,6 +13,8 @@ import { Navigation } from '@shared/types';
 import { Container, theme, Text } from '@shared/styles';
 
 import { MenuContainer, MenuItemContainer } from './styles';
+import { asyncAddGames } from '@store/games-slice';
+import { asyncAddBets, resetQuerys } from '@store/bets-slice';
 
 const Menu = ({ closeMenu }): JSX.Element => {
 	const dispatch = useAppDispatch();
@@ -23,6 +25,9 @@ const Menu = ({ closeMenu }): JSX.Element => {
 	};
 
 	const goToHomeScreenHandler = () => {
+		dispatch(asyncAddGames());
+		dispatch(resetQuerys());
+		dispatch(asyncAddBets('/bet/all-bets'));
 		navigate('Home');
 		closeMenu();
 	};

@@ -7,7 +7,7 @@ interface IFooterProps {
 export const Content = styled.View<IFooterProps>`
 	height: 60px;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-end;
 	border-top-width: 1px;
 	border-top-color: ${({ theme }) => theme.colors.grey01};
 	margin-top: ${({ marginTop }) => `${marginTop}px`};

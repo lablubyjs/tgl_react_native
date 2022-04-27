@@ -12,7 +12,7 @@ export const ButtonContainer = styled.TouchableOpacity<IButtonGameProps>`
 	flex-direction: row;
 	background-color: ${({ backgroundColor }) => backgroundColor};
 	width: ${({ width }) => `${width}px`};
-	height: 35px;
+	height: 30px;
 	border-radius: 10px;
 	border-color: ${({ color }) => color};
 	border-width: 1px;

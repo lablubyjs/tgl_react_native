@@ -19,7 +19,7 @@ const ButtonAction = ({
 			width={width}
 			backgroundColor={backgroundColor}>
 			{children}
-			<TextBoldRegular fontSize={15} color={color}>
+			<TextBoldRegular fontSize={13} color={color}>
 				{name}
 			</TextBoldRegular>
 		</ButtonContainer>

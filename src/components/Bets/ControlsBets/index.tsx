@@ -6,8 +6,8 @@ import Icon from '../../UI/Icon';
 
 import { useAppDispatch, useAppSelector } from '@hooks';
 
-import { addQuery, removeQuery } from '@store/bets-slice';
-import { selectGame } from '@store/games-slice';
+import { addQuery, removeQuery, resetQuerys } from '@store/bets-slice';
+import { asyncAddGames, selectFirstGame, selectGame } from '@store/games-slice';
 
 import { Navigation } from '@shared/types';
 
@@ -26,6 +26,7 @@ const ControlsBets = ({ games }): JSX.Element => {
 	const { navigate } = useNavigation<Navigation>();
 
 	const goToNewBetScreen = () => {
+		dispatch(resetQuerys());
 		navigate('NewBet');
 	};
 
