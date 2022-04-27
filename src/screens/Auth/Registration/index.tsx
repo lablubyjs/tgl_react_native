@@ -45,7 +45,10 @@ const Registration = ({ navigation }): JSX.Element => {
 
 	const [loading, setLoading] = useState(false);
 
-	const [seePasswordItens, setSeePasswordItens] = useState({ prop: true, icon: 'eye' });
+	const [seePasswordItens, setSeePasswordItens] = useState({
+		prop: true,
+		icon: 'eye',
+	});
 
 	const seePasswordHandler = () => {
 		setSeePasswordItens((prevSeePasswordItems) => ({
@@ -76,11 +79,16 @@ const Registration = ({ navigation }): JSX.Element => {
 
 			setLoading(false);
 			await dispatch(addUser(response));
-			
 		} catch (error: any) {
 			setLoading(false);
 
-			Alert.alert('Registration failed', error.error.message, [{ text: 'OK' }]);
+			if (error.status === 400) {
+				Alert.alert('Registration failed', 'Check your registration data', [
+					{ text: 'OK' },
+				]);
+			} else {
+				Alert.alert('Registration failed', '', [{ text: 'OK' }]);
+			}
 		}
 	};
 

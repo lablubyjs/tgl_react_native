@@ -126,5 +126,5 @@ export type CartComponentProps = {
 	cartItems: IGame[];
 	cartTotal: number;
 	onSave: () => void;
-	onDeleteItem: (index: number) => void;
+	onDeleteItem: (index: number, game_id: number, numbers: number[]) => void;
 };

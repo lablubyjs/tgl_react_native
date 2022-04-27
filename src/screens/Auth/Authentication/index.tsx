@@ -78,10 +78,14 @@ const Authentication = ({ navigation }): JSX.Element => {
 
 			setLoading(false);
 			await dispatch(addUser(response));
-
 		} catch (error: any) {
 			setLoading(false);
-			Alert.alert('Log in failed', error.message, [{ text: 'OK' }]);
+			
+			if (error.status === 401) {
+				Alert.alert('Log in failed', 'Invalid credentials', [{ text: 'OK' }]);
+			} else {
+				Alert.alert('Log in failed', '', [{ text: 'OK' }]);
+			}
 		}
 	};
 

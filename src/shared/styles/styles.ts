@@ -15,9 +15,10 @@ export const Container = styled.View`
 export const ContainerModal = styled.View`
 	background-color: red;
 	width: 80%;
-	height: 40%;
+	min-height: 40%;
 	border-radius: 30px;
 	align-items: center;
+	justify-content: center;
 	padding: 50px;
 	justify-content: space-between;
 	background-color: ${({ theme }) => theme.colors.white01};

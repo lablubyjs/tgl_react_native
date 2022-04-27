@@ -57,12 +57,16 @@ const ResetPassword = ({ navigation }): JSX.Element => {
 
 			setLoading(false);
 			navigation.navigate('ChangePassword', { token: response.token });
-
 		} catch (error: any) {
 			setLoading(false);
 
-			Alert.alert('Send Link Failed', error.message, [{ text: 'OK' }]);
-
+			if (error.status === 404) {
+				Alert.alert('Send Link Failed', 'Invalid credentials', [
+					{ text: 'OK' },
+				]);
+			} else {
+				Alert.alert('Send Link Failed', '', [{ text: 'OK' }]);
+			}
 		}
 	};
 

@@ -88,7 +88,7 @@ const ChangePassword = ({ navigation, route }): JSX.Element => {
 		} catch (error: any) {
 			setLoading(false);
 
-			Alert.alert('Change password failed', error.message, [
+			Alert.alert('Change password failed', 'Password reset failed', [
 				{ text: 'OK', onPress: () => navigation.navigate('Authentication') },
 			]);
 		}

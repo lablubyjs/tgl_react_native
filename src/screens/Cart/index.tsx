@@ -19,9 +19,13 @@ import { betsServices } from '@shared/services';
 
 import { emptyCart, removeToCart } from '@store/cart-slice';
 import { asyncAddBets, resetQuerys } from '@store/bets-slice';
-import { asyncAddGames, selectFirstGame } from '@store/games-slice';
 
-import { formatValueToCurrency, getGamePriceNumber } from '@shared/utils';
+import {
+	formatNumbers,
+	formatValueToCurrency,
+	getGameName,
+	getGamePriceNumber,
+} from '@shared/utils';
 
 import {
 	Container,
@@ -30,6 +34,7 @@ import {
 	Text,
 	theme,
 } from '@shared/styles';
+import { asyncAddGames, selectedGame } from '@store/games-slice';
 
 const Cart = ({ navigation }): JSX.Element => {
 	const [showMenu, setShowMenu] = useState(false);
@@ -55,6 +60,9 @@ const Cart = ({ navigation }): JSX.Element => {
 	};
 
 	const goToHomeScreen = async () => {
+		await dispatch(resetQuerys());
+		await dispatch(asyncAddBets('/bet/all-bets'));
+		await dispatch(asyncAddGames());
 		navigation.navigate('Home');
 	};
 
@@ -117,12 +125,14 @@ const Cart = ({ navigation }): JSX.Element => {
 		setShowModal(false);
 	};
 
-	const deleteItemHandler = (index) => {
+	const deleteItemHandler = (index, game_id, numbers) => {
 		setShowModal(true);
 		setModalContent(
 			<>
 				<Text fontSize={20} color={theme.colors.grey08}>
-					Do you really want to delete the item from the cart?
+					This game is of type {getGameName(games, game_id)}.
+					And has the following numbers: {formatNumbers(numbers.join(','))}. Do
+					you really want to delete the item from the cart?
 				</Text>
 				<ButtonAction
 					onPressHandler={deleteItem.bind(this, index)}

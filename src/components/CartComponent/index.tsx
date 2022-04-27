@@ -38,7 +38,12 @@ const CartComponent = ({
 				numbers={item.numbers}
 				gameName={getGameName(games, item.game_id)}
 				gamePrice={getGamePrice(games, item.game_id)}
-				onDeleteItem={onDeleteItem.bind(this, index)}
+				onDeleteItem={onDeleteItem.bind(
+					this,
+					index,
+					item.game_id,
+					item.numbers
+				)}
 			/>
 		);
 	};

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { createShimmerPlaceholder } from 'react-native-shimmer-placeholder';
 
 import { LinearGradient } from 'expo-linear-gradient';

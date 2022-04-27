@@ -31,7 +31,7 @@ instance.interceptors.response.use(
 	},
 	function (error: AxiosError) {
 		if (error.response) {
-			const handlerError = error.response.data;
+			const handlerError = error.response;
 			return Promise.reject(handlerError);
 		}
 
