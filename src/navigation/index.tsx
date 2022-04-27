@@ -1,16 +1,25 @@
+import { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { useAppSelector } from '@hooks';
+import { useAppDispatch, useAppSelector } from '@hooks';
 
 import {
+	Account,
 	Authentication,
 	ChangePassword,
-	Games,
+	NewBet,
 	Home,
 	Registration,
 	ResetPassword,
+	Cart,
 } from '@screens';
+
+import { asyncAddBets } from '@store/bets-slice';
+import { asyncAddGames } from '@store/games-slice';
+import { asyncAddMinCartValue } from '@store/cart-slice';
+import { asyncAddUser } from '@store/user-slice';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,20 +40,50 @@ const AuthNavigation = () => {
 };
 
 const UserNavigation = () => {
+	const [isFetched, setIsFetched] = useState(false);
+	const dispatch = useAppDispatch();
+
+	const url = useAppSelector((state) => state.bets.querys.join(''));
+	
+	useEffect(() => {
+		const fetchData = async () => {
+			await dispatch(asyncAddGames());
+			await dispatch(asyncAddMinCartValue());
+			await dispatch(asyncAddUser());
+			await dispatch(asyncAddBets(url));
+			setIsFetched(true);
+		};
+
+		fetchData();
+	}, []);
+
 	return (
 		<NavigationContainer>
-			<Stack.Navigator>
+			<Stack.Navigator
+				screenOptions={{
+					headerShown: false,
+				}}>
 				<Stack.Screen name='Home' component={Home} />
-				<Stack.Screen name='Games' component={Games} />
+				<Stack.Screen name='NewBet' component={NewBet} />
+				<Stack.Screen name='Account' component={Account} />
+				<Stack.Screen name='Cart' component={Cart} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
 };
 
 const AppNavigation = () => {
-	const token = useAppSelector((state) => state.user.token);
-	
-	return token['token'] ? <UserNavigation /> : <AuthNavigation />;
+	const [token, setToken] = useState<any>();
+
+	useEffect(() => {
+		const fetchToken = async () => {
+			setToken(await AsyncStorage.getItem('token'));
+		};
+
+		fetchToken();
+	}, []);
+
+	return token ? <UserNavigation /> : <AuthNavigation />;
 };
 
 export default AppNavigation;
