@@ -16,7 +16,7 @@ import {
 	Form,
 	Footer,
 	Button,
-	IconButton,
+	Icon,
 	ControlledInput,
 	LinkComponent,
 	Loading,
@@ -30,7 +30,7 @@ import { addUser } from '@store/user-slice';
 
 import { FormValues } from '@shared/types';
 
-import { theme, Container, Title, TitleLight } from '@shared/styles';
+import { theme, Container, Text, TextLight } from '@shared/styles';
 
 const schema = yup.object({
 	email: yup
@@ -120,7 +120,7 @@ const Authentication = ({ navigation }): JSX.Element => {
 								secureTextEntry={seePasswordItens.prop}
 								error={errors.password}>
 								<Button onPressHandler={seePasswordHandler}>
-									<IconButton
+									<Icon
 										icon={seePasswordItens.icon}
 										size={20}
 										color={theme.colors.grey08}
@@ -128,17 +128,17 @@ const Authentication = ({ navigation }): JSX.Element => {
 								</Button>
 							</ControlledInput>
 							<LinkComponent goTo={{ screen: 'ResetPassword' }}>
-								<TitleLight fontSize={15} color={theme.colors.grey04}>
+								<TextLight fontSize={15} color={theme.colors.grey04}>
 									I forget my password
-								</TitleLight>
+								</TextLight>
 							</LinkComponent>
 							<Button
 								onPressHandler={handleSubmit(onAuthenticationHandler)}
 								padding={15}>
-								<Title fontSize={35} color={theme.colors.green01}>
+								<Text fontSize={35} color={theme.colors.green01}>
 									Log In
-								</Title>
-								<IconButton
+								</Text>
+								<Icon
 									icon='arrow-forward-outline'
 									size={35}
 									color={theme.colors.green01}
@@ -146,16 +146,16 @@ const Authentication = ({ navigation }): JSX.Element => {
 							</Button>
 						</Form>
 						<Button onPressHandler={goToSingUpScreen} padding={15}>
-							<Title fontSize={35} color={theme.colors.grey08}>
+							<Text fontSize={35} color={theme.colors.grey08}>
 								Sign Up
-							</Title>
-							<IconButton
+							</Text>
+							<Icon
 								icon='arrow-forward-outline'
 								size={35}
 								color={theme.colors.grey08}
 							/>
 						</Button>
-						<Footer marginTop={15} />
+						<Footer marginTop={50} />
 					</>
 				</KeyboardAvoidingView>
 			</TouchableWithoutFeedback>

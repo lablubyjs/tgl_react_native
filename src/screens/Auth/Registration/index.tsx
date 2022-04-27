@@ -16,7 +16,7 @@ import {
 	Form,
 	Footer,
 	Button,
-	IconButton,
+	Icon,
 	ControlledInput,
 	Loading,
 } from '@components';
@@ -29,7 +29,7 @@ import { addUser } from '@store/user-slice';
 
 import { FormValues } from '@shared/types';
 
-import { theme, Container, Title } from '@shared/styles';
+import { theme, Container, Text } from '@shared/styles';
 
 const schema = yup.object({
 	name: yup.string().required('Please enter a name'),
@@ -125,7 +125,7 @@ const Registration = ({ navigation }): JSX.Element => {
 								secureTextEntry={seePasswordItens.prop}
 								error={errors.password}>
 								<Button onPressHandler={seePasswordHandler}>
-									<IconButton
+									<Icon
 										icon={seePasswordItens.icon}
 										size={20}
 										color={theme.colors.grey08}
@@ -135,10 +135,10 @@ const Registration = ({ navigation }): JSX.Element => {
 							<Button
 								onPressHandler={handleSubmit(onRegistrationHandler)}
 								padding={15}>
-								<Title fontSize={35} color={theme.colors.green01}>
+								<Text fontSize={35} color={theme.colors.green01}>
 									Register
-								</Title>
-								<IconButton
+								</Text>
+								<Icon
 									icon='arrow-forward-outline'
 									size={35}
 									color={theme.colors.green01}
@@ -146,16 +146,16 @@ const Registration = ({ navigation }): JSX.Element => {
 							</Button>
 						</Form>
 						<Button onPressHandler={backToAuthenticationScreen} padding={15}>
-							<IconButton
+							<Icon
 								icon='arrow-back-outline'
 								size={35}
 								color={theme.colors.grey08}
 							/>
-							<Title fontSize={35} color={theme.colors.grey08}>
+							<Text fontSize={35} color={theme.colors.grey08}>
 								Back
-							</Title>
+							</Text>
 						</Button>
-						<Footer marginTop={25} />
+						<Footer marginTop={75} />
 					</>
 				</KeyboardAvoidingView>
 			</TouchableWithoutFeedback>

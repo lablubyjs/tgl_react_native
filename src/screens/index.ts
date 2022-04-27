@@ -5,7 +5,11 @@ import ChangePassword from './Auth/ChangePassword';
 
 import Home from './Home';
 
-import Games from './Games';
+import NewBet from './NewBet';
+
+import Account from './Account';
+
+import Cart from './Cart';
 
 export {
 	Authentication,
@@ -13,5 +17,7 @@ export {
 	ResetPassword,
 	ChangePassword,
 	Home,
-	Games,
+	NewBet,
+	Account,
+	Cart
 };

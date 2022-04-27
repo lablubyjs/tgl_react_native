@@ -16,7 +16,7 @@ import {
 	Form,
 	Footer,
 	Button,
-	IconButton,
+	Icon,
 	ControlledInput,
 	Loading,
 } from '@components';
@@ -25,7 +25,7 @@ import { authServices } from '@shared/services';
 
 import { FormValues } from '@shared/types';
 
-import { theme, Container, Title } from '@shared/styles';
+import { theme, Container, Text } from '@shared/styles';
 
 const schema = yup.object({
 	email: yup
@@ -96,10 +96,10 @@ const ResetPassword = ({ navigation }): JSX.Element => {
 							<Button
 								onPressHandler={handleSubmit(onResetPasswordHandler)}
 								padding={15}>
-								<Title fontSize={35} color={theme.colors.green01}>
+								<Text fontSize={35} color={theme.colors.green01}>
 									Send link
-								</Title>
-								<IconButton
+								</Text>
+								<Icon
 									icon='arrow-forward-outline'
 									size={35}
 									color={theme.colors.green01}
@@ -107,16 +107,16 @@ const ResetPassword = ({ navigation }): JSX.Element => {
 							</Button>
 						</Form>
 						<Button onPressHandler={backToAuthenticationScreen} padding={15}>
-							<IconButton
+							<Icon
 								icon='arrow-back-outline'
 								size={35}
 								color={theme.colors.grey08}
 							/>
-							<Title fontSize={35} color={theme.colors.grey08}>
+							<Text fontSize={35} color={theme.colors.grey08}>
 								Back
-							</Title>
+							</Text>
 						</Button>
-						<Footer marginTop={120} />
+						<Footer marginTop={175} />
 					</>
 				</KeyboardAvoidingView>
 			</TouchableWithoutFeedback>
